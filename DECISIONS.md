@@ -123,3 +123,27 @@ Claude Code `PostToolUse` hook on `Write|Edit` formats and rebuilds whenever
 - The hook rebuilds but does not run `--self-test`; delivery and click routing
   are unobservable from the build anyway. Full verification stays in the
   `verify` skill, which ends by handing the click test to a human.
+
+## 2026-07-28 — Tag releases forward from v0.4.1, never retroactively
+
+**Context:** The repo had no tags and no GitHub releases at all: four version
+bumps (0.1.0 through 0.4.0) lived only in `herdr-plugin.toml`, and the
+body-click fix landed after the 0.4.0 bump with no release to carry it. The
+question was whether to backfill tags for the earlier versions.
+
+**Decision:** `v0.4.1` is the first tag this repo ever gets. Versions 0.1.0 to
+0.4.0 stay untagged. Every release from here on gets a tag and a GitHub release
+alongside the manifest bump, per the `release` skill.
+
+**Notes / rationale:**
+- `herdr plugin install <owner>/<repo>` resolves the **default branch's HEAD**;
+  `--ref` pins a revision and there is no `plugin update` in plugin v1
+  (reinstall refreshes). So a tag changes nothing for anyone installing
+  normally — `main` is what ships, and it has to stay installable at all times.
+- Which also means tags are for humans, not for the installer: an empty
+  Releases tab reads as abandoned to someone arriving from the plugin
+  directory, and `--ref v0.4.1` becomes a way to pin.
+- Backfilling was rejected. 0.1.0–0.3.0 are the pre-rename "Approvr" builds
+  with a different build step (`alerter`, then bun), and 0.4.0's tree lacks the
+  body-click fix — tags pointing at those commits would advertise revisions
+  that install into a worse state than `main`.
