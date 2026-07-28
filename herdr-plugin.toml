@@ -1,6 +1,6 @@
 id = "cedrus.prompt-reply"
 name = "Prompt Reply"
-version = "0.4.0"
+version = "0.4.1"
 # Plugin v1 landed in 0.7.0, but whether those releases run [[build]] commands is
 # unverified -- and without the bundle the notifications silently degrade to
 # Terminal's identity. 0.7.5 is what this was actually tested against.
