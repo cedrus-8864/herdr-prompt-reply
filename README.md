@@ -147,6 +147,15 @@ with `pane send-keys`. On `pane.focused`, the pane's notification is withdrawn.
 Unparseable prompts still notify; clicking focuses the pane. Click outcomes are
 appended to `~/Library/Logs/HerdrPromptReply.log`.
 
+## Compared to the other macOS notifier plugins
+
+[herdr-focus-notify](https://github.com/yankewei/herdr-focus-notify) and
+[herdr-terminal-notifier](https://github.com/dot/herdr-terminal-notifier) tell
+you a pane is blocked and take you there; the answer is still typed in the
+terminal. This one carries the prompt's own options as buttons, so the common
+case — approve and move on — never brings you back to the terminal. Clicking the
+body still jumps to the pane for when you want the full context.
+
 ## Uninstall
 
 ```sh
